@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Balão Vire Membro</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    #balao {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      padding: 20px 30px;
+      border: 4px solid black;
+      background: white;
+      border-radius: 30px;
+      font-size: 32px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      color: black;
+      animation: shake 0.5s infinite;
+    }
+
+    #balao::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 40px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top: 20px solid white;
+      border-right: 20px solid transparent;
+      transform: rotate(-20deg);
+      z-index: 1;
+    }
+
+    #balao::before {
+      content: '';
+      position: absolute;
+      bottom: -24px;
+      left: 38px;
+      width: 0;
+      height: 0;
+      border: 12px solid transparent;
+      border-top: 24px solid black;
+      border-right: 24px solid transparent;
+      transform: rotate(-20deg);
+      z-index: 0;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      25% { transform: translate(1px, -2px) rotate(1deg); }
+      50% { transform: translate(-1px, 1px) rotate(-1deg); }
+      75% { transform: translate(2px, 1px) rotate(1deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="balao">VIRE MEMBRO!</div>
+
+  <script>
+    const balao = document.getElementById('balao');
+
+    function mostrarBalao() {
+      balao.style.display = 'block';
+      setTimeout(() => {
+        balao.style.display = 'none';
+      }, 3000); // 3 segundos
+    }
+
+    // Mostra pela primeira vez após 5 segundos (só para testar)
+    setTimeout(mostrarBalao, 5000);
+
+    // Depois, a cada 15 minutos (900000 ms)
+    setInterval(mostrarBalao, 900000);
+  </script>
+</body>
+</html>
