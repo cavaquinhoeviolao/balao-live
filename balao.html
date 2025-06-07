@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>VIRE MEMBRO!</title>
+  <title>Balão Vire Membro</title>
   <style>
     html, body {
       margin: 0;
@@ -13,53 +13,43 @@
 
     #balao {
       position: absolute;
-      top: 40px;
-      left: 40px;
-      width: 350px;
-      padding: 40px 20px;
-      color: black;
-      font-size: 28px;
-      font-weight: bold;
-      text-align: center;
-      background: white;
-      border: 5px solid black;
-      clip-path: polygon(
-        20% 0%, 40% 10%, 60% 0%, 75% 10%, 100% 0%,
-        90% 30%, 100% 50%, 90% 70%, 100% 100%, 70% 90%,
-        50% 100%, 30% 90%, 0% 100%, 10% 70%, 0% 50%,
-        10% 30%, 0% 0%
-      );
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
       display: none;
-      animation: shake 0.5s infinite;
+      width: 300px;
+      animation: shake 0.2s infinite;
+      z-index: 9999;
     }
 
     @keyframes shake {
-      0% { transform: translate(0px, 0px) rotate(0deg); }
-      25% { transform: translate(2px, -2px) rotate(1deg); }
-      50% { transform: translate(-2px, 2px) rotate(-1deg); }
-      75% { transform: translate(2px, 2px) rotate(1deg); }
-      100% { transform: translate(0px, 0px) rotate(0deg); }
+      0% { transform: translateX(-50%) translateY(0); }
+      25% { transform: translateX(-50%) translateY(-5px); }
+      50% { transform: translateX(-50%) translateY(5px); }
+      75% { transform: translateX(-50%) translateY(-5px); }
+      100% { transform: translateX(-50%) translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div id="balao">VIRE MEMBRO!</div>
+  <img id="balao" src="balao01.png" alt="VIRE MEMBRO!">
 
   <script>
-    const balao = document.getElementById('balao');
-
     function mostrarBalao() {
-      balao.style.display = 'block';
+      const balao = document.getElementById("balao");
+      balao.style.display = "block";
+
       setTimeout(() => {
-        balao.style.display = 'none';
-      }, 3000); // 3 segundos
+        balao.style.display = "none";
+      }, 4000); // 4 segundos
     }
 
-    // Primeira aparição em 5 segundos (pra testar)
-    setTimeout(mostrarBalao, 5000);
+    // Mostra o primeiro balão imediatamente (opcional)
+    setTimeout(mostrarBalao, 1000);
 
-    // Depois, a cada 15 minutos
-    setInterval(mostrarBalao, 900000);
+    // Mostra o balão a cada 15 minutos (900.000 ms)
+    setInterval(mostrarBalao, 15 * 60 * 1000);
   </script>
 </body>
 </html>
+
