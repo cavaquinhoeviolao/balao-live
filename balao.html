@@ -11,88 +11,17 @@ html, body {
     overflow: hidden;
 }
 
-#carrossel {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;    
-}
-
-.item {
-    display: none;
-    width: 100%;
-}
-
-.item.ativo {
+img {
     display: block;
-}
-
-.item img {
-    width: 100%;
-    display: block;
-}
-
-@keyframes shake {
-    0%   { transform: translateX(-50%) translateY(0); }
-    25%  { transform: translateX(-50%) translateY(-4px); }
-    50%  { transform: translateX(-50%) translateY(4px); }
-    75%  { transform: translateX(-50%) translateY(-4px); }
-    100% { transform: translateX(-50%) translateY(0); }
+    width: 300px; /* Altere aqui se quiser outro tamanho */
+    height: auto;
 }
 </style>
 
 </head>
 <body>
 
-<div id="carrossel">
-
-    <!-- QR Code -->
-    <div id="item1" class="item ativo">
-        <img src="qrcode.png" alt="QR Code">
-    </div>
-
-    <!-- Botão clicável -->
-    <a id="item2"
-       class="item"
-       href="https://www.streamar.com.br/cavaquinhoeviolao/assinar"
-       target="_blank">
-        <img src="botao.png" alt="Planos">
-    </a>
-
-</div>
-
-<script>
-
-const itens = [
-    document.getElementById("item1"),
-    document.getElementById("item2")
-];
-
-const tempos = [
-    30000, // QR Code: 30 segundos
-    5000   // Botão: 5 segundos
-];
-
-let indice = 0;
-
-function mostrarItem() {
-
-    itens.forEach(item => item.classList.remove("ativo"));
-
-    itens[indice].classList.add("ativo");
-
-    const tempo = tempos[indice];
-
-    indice = (indice + 1) % itens.length;
-
-    setTimeout(mostrarItem, tempo);
-}
-
-mostrarItem();
-
-</script>
+<img src="qrcode.png" alt="QR Code">
 
 </body>
 </html>
-```
