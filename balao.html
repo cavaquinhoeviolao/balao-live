@@ -1,51 +1,100 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
 
-    #balao {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      width: 300px;
-      animation: shake 0.2s infinite;
-    }
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+}
 
-    @keyframes shake {
-      0% { transform: translateX(-50%) translateY(0); }
-      25% { transform: translateX(-50%) translateY(-4px); }
-      50% { transform: translateX(-50%) translateY(4px); }
-      75% { transform: translateX(-50%) translateY(-4px); }
-      100% { transform: translateX(-50%) translateY(0); }
-    }
-  </style>
+#carrossel {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    animation: shake 0.2s infinite;
+}
+
+.item {
+    display: none;
+    width: 100%;
+}
+
+.item.ativo {
+    display: block;
+}
+
+.item img {
+    width: 100%;
+    display: block;
+}
+
+@keyframes shake {
+    0%   { transform: translateX(-50%) translateY(0); }
+    25%  { transform: translateX(-50%) translateY(-4px); }
+    50%  { transform: translateX(-50%) translateY(4px); }
+    75%  { transform: translateX(-50%) translateY(-4px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+</style>
+
 </head>
 <body>
-  <img id="balao" src="balao01.png">
 
-  <script>
-    function mostrarBalao() {
-      const balao = document.getElementById("balao");
-      balao.style.display = "block";
-      setTimeout(() => {
-        balao.style.display = "none";
-      }, 1000); // 1 segundos
-    }
+<div id="carrossel">
 
-    // Chama a cada 15 minutos
-    setInterval(mostrarBalao, 15 * 60 * 1000);
+    <!-- QR Code -->
+    <div id="item1" class="item ativo">
+        <img src="qrcode.png" alt="QR Code">
+    </div>
 
-    // Opcional: mostra já nos primeiros segundos
-    setTimeout(mostrarBalao, 2000);
-  </script>
+    <!-- Banner clicável -->
+    <a id="item2"
+       class="item"
+       href="https://www.seusite.com.br"
+       target="_blank">
+        <img src="banner.png" alt="Meu Site">
+    </a>
+
+</div>
+
+<script>
+
+const itens = [
+    document.getElementById("item1"),
+    document.getElementById("item2")
+];
+
+const tempos = [
+    30000, // QR Code: 30 segundos
+    5000   // Banner: 5 segundos
+];
+
+let indice = 0;
+
+function mostrarItem() {
+
+    itens.forEach(item => item.classList.remove("ativo"));
+
+    itens[indice].classList.add("ativo");
+
+    const tempo = tempos[indice];
+
+    indice = (indice + 1) % itens.length;
+
+    setTimeout(mostrarItem, tempo);
+}
+
+mostrarItem();
+
+</script>
+
 </body>
 </html>
+```
