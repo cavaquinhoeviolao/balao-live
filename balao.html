@@ -23,12 +23,20 @@ html, body {
 
 #mensagem {
     width: 300px;
-    font-family: Arial, sans-serif;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial Black, Arial, sans-serif;
     font-size: 42px;
     font-weight: bold;
     color: white;
     text-align: center;
     line-height: 1.2;
+
     text-shadow:
         -2px -2px 0 #000,
          2px -2px 0 #000,
@@ -48,8 +56,8 @@ html, body {
 <body>
 
 <div id="mensagem" class="ativo">
-    APOIE O CANAL!<br>
-    🤠👍
+    <div>APOIE O CANAL!</div>
+    <div>🤠👍</div>
 </div>
 
 <div id="qrcode">
@@ -70,7 +78,6 @@ const tempos = [
 let indice = 0;
 
 function mostrarElemento() {
-
     elementos.forEach(el => el.classList.remove("ativo"));
 
     elementos[indice].classList.add("ativo");
