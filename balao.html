@@ -31,6 +31,30 @@ html, body {
     display: flex;
 }
 
+@keyframes brilho {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow:
+            -2px -2px 0 #000,
+             2px -2px 0 #000,
+            -2px  2px 0 #000,
+             2px  2px 0 #000,
+             0 0 8px rgba(0,0,0,.6);
+    }
+
+    50% {
+        transform: scale(1.08);
+        text-shadow:
+            -2px -2px 0 #000,
+             2px -2px 0 #000,
+            -2px  2px 0 #000,
+             2px  2px 0 #000,
+             0 0 10px #ffffff,
+             0 0 20px #ffffff,
+             0 0 35px #ffd700;
+    }
+}
+
 #mensagem {
     justify-content: center;
     align-items: center;
@@ -42,6 +66,8 @@ html, body {
     color: white;
     text-align: center;
     line-height: 1.15;
+
+    animation: brilho 1.5s ease-in-out infinite;
 
     text-shadow:
         -2px -2px 0 #000,
