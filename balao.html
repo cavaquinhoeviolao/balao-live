@@ -9,59 +9,74 @@ html, body {
     padding: 0;
     background: transparent;
     overflow: hidden;
+    width: 300px;
+    height: 300px;
+}
+
+#container {
+    position: relative;
+    width: 300px;
+    height: 300px;
 }
 
 #mensagem,
 #qrcode {
+    position: absolute;
+    inset: 0;
     display: none;
 }
 
 #mensagem.ativo,
 #qrcode.ativo {
-    display: block;
+    display: flex;
 }
 
 #mensagem {
-    width: 300px;
-    height: 300px;
-
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     font-family: Arial Black, Arial, sans-serif;
     font-size: 42px;
     font-weight: bold;
     color: white;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.15;
 
     text-shadow:
         -2px -2px 0 #000,
          2px -2px 0 #000,
         -2px  2px 0 #000,
          2px  2px 0 #000,
-         0px  0px 8px rgba(0,0,0,.6);
+         0 0 8px rgba(0,0,0,.6);
+}
+
+#qrcode {
+    justify-content: center;
+    align-items: center;
 }
 
 #qrcode img {
-    display: block;
     width: 300px;
-    height: auto;
+    height: 300px;
+    display: block;
 }
 </style>
 
 </head>
 <body>
 
-<div id="mensagem" class="ativo">
-    <div>APOIE O CANAL!</div>
-    <div>🤠👍</div>
-</div>
+<div id="container">
 
-<div id="qrcode">
-    <img src="qrcode.png" alt="QR Code">
+    <div id="mensagem" class="ativo">
+        <div>APOIE O CANAL!</div>
+        <div style="font-size:60px;">🤠👍</div>
+    </div>
+
+    <div id="qrcode">
+        <img src="qrcode.png" alt="QR Code">
+    </div>
+
 </div>
 
 <script>
@@ -71,8 +86,8 @@ const elementos = [
 ];
 
 const tempos = [
-    5000,   // Mensagem: 5 segundos
-    50000   // QR Code: 50 segundos
+    5000,
+    50000
 ];
 
 let indice = 0;
@@ -82,11 +97,9 @@ function mostrarElemento() {
 
     elementos[indice].classList.add("ativo");
 
-    const tempo = tempos[indice];
+    setTimeout(mostrarElemento, tempos[indice]);
 
     indice = (indice + 1) % elementos.length;
-
-    setTimeout(mostrarElemento, tempo);
 }
 
 mostrarElemento();
